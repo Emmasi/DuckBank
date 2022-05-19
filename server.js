@@ -1,6 +1,8 @@
 import express from "express";
 import { MongoClient,ObjectId } from "mongodb";
 import session from "express-session";
+import bcrypt from "bcrypt"
+
 const port = 3000
 const app = express()
 const client = new MongoClient ('mongodb://127.0.0.1:27017/')
@@ -20,6 +22,7 @@ app.use(session({
         maxAge: 5 * 60 * 1000 
       }
 }));
+const saltRounds = 5;
 
 //hämtar customers
 app.get('/api/customers', async (req, res) => {
@@ -42,7 +45,7 @@ app.delete('/api/customers/:id', async (req, res) => {
 });
 
 //skapa ny användare
-app.post('/api/creat', async (req, res) => {
+app.post('/api/create', async (req, res) => {
     if(!Object.keys(req.body).length){
         res.status(401).send()
     }
@@ -56,34 +59,35 @@ app.post('/api/creat', async (req, res) => {
             entry,
         })
 });
-//skapa Admin
-app.post('/api/newAdmin',async(req,res)=>{
-    const newuser = await userCollection.insertOne({
-    username:req.body.username,
-    password:req.body.password,
-    })
-    res.json({
-        success:true,
-    })
-})
 //kolla session
-app.get('/api/login', (req, res) => {
+app.get('/api/loggedin', (req, res) => {
     if(req.session.user){
-      res.json({ user: req.session.username });
+      res.json({ user: req.session.user });
     }else {
       res.status(401).json({ error: 'Unauthorized' });
     } 
   });
+//skapa Admin
+app.post('/api/newAdmin',async(req,res)=>{
+    const hash = await bcrypt.hash(req.body.password, saltRounds);
+    const newuser = {
+        username:req.body.username,
+        password:hash,
+    }
+    await userCollection.insertOne(newuser)
+    res.json({
+        success:true,
+    })
+})
 //logga in
 app.post('/login', async (req, res) => {
     const user = await userCollection.findOne({
-      user: req.body.loginName,
-      pass: req.body.loginPass
-    });
-    if (user) {
+      username: req.body.loginName})
+    const passkoll = await bcrypt.compare(req.body.loginPass, user.password);
+    if (user && passkoll) {
       req.session.user = user;
       res.json({
-        user: user.user
+        user: user
       });
     } else { 
       res.status(401).send('Unauthorized');

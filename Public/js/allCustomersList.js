@@ -19,7 +19,7 @@ const listCostomers = (customers) => {
         <a href="/api/customers/" class ="delete" data-custid="${customer._id}"><i class="fa fa-trash" id="fa-trash"aria-hidden="true"></i></a>
         </div>
         <div class="customerName">
-        <h4>Kontonummer: ${customer._id}</h4>
+        <h4>Kontonummer: ${customer._id.slice(0, 10)}</h4>
         <p>Belopp: ${customer.amount}:-</p>
         </div>
         <div>

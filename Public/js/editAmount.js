@@ -5,7 +5,6 @@ const editaAmount = async (e) => {
     const inputAdd = document.querySelector(`#add-${e.target.dataset.custid}`)
     const inputReduce = document.querySelector(`#reduce-${e.target.dataset.custid}`)
     const editPostItem = entries.find(({ _id }) => _id === e.target.dataset.custid);
-    const accountToChange = e.target.dataset.custid;
     const amountToChange = parseInt(inputAdd.value) - parseInt(inputReduce.value);
     const currentAmount = editPostItem.amount;
     const finalAmount= currentAmount + amountToChange;

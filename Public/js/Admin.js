@@ -1,4 +1,17 @@
-   // <a href="/profile.html?account=${customer._id}"></a> 
+const check = async ()=>{
+  const res = await fetch('/api/loggedin');
+  const data = await res.json();
+  console.log(data);
+
+  if(data.user){
+    loggainContainer.classList.add('hide')
+    startContainer.classList.remove('hide')
+    backgrundimg.classList.remove('hide')
+  }else{
+    console.log('Not logged in');
+  }
+}
+check()
 loginForm.addEventListener('submit', async (e) => { 
   e.preventDefault();
   const loginname= document.querySelector("#loginname").value
@@ -19,13 +32,5 @@ loginForm.addEventListener('submit', async (e) => {
 const getUser = async () => { 
   const res = await fetch('/user');
   const user = await res.json();
-
-  console.log(user);
 }
-
 getUser();
-
-const customerAccount = (customer) => {
-  headingProfile.innerHTML=`Välkommen ${customer.name}`
-  profileContainer.innerHTML = `<p>${customer.name} <br> Kontonummer ${customer._id.slice(0, 10)} <br> Saldo ${customer.amount} kr</p>`;
-}

@@ -3,9 +3,7 @@ postForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const inputName= document.querySelector("#name").value
     const inputCash = document.querySelector("#amount").value
-    console.log(inputName)
-
-    const useUrl = formMode === FORM_MODES.CREATE ? '/api/creat' : `/api/creat/${editPostItem._id}`;
+    const useUrl = formMode === FORM_MODES.CREATE ? '/api/create' : `/api/create/${editPostItem._id}`;
   
     await fetch(useUrl, {
       method:'POST',
@@ -17,7 +15,6 @@ postForm.addEventListener('submit', async (e)=>{
         amount: inputCash,
       })
     });
-    console.log(inputName)
     postForm.reset();
     bankcustomerApi()
 });

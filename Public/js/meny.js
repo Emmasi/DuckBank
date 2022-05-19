@@ -1,41 +1,42 @@
-
 const showList = () =>{
-    backgrundimg.classList.add('hidde')
-    newCustomer.classList.add('hidde')
-    loggainContainer.classList.add('hidde')
-    if(allCustomersContainer.classList.contains('hidde')){
-        allCustomersContainer.classList.remove('hidde')
+    backgrundimg.classList.add('hide')
+    newCustomer.classList.add('hide')
+    loggainContainer.classList.add('hide')
+    if(allCustomersContainer.classList.contains('hide')){
+        allCustomersContainer.classList.remove('hide')
     }else{
-        allCustomersContainer.classList.add('hidde')
-        backgrundimg.classList.remove('hidde')
+        allCustomersContainer.classList.add('hide')
+        backgrundimg.classList.remove('hide')
     }
 }
 const showAddForm = () =>{
-    console.log("hej")
-    backgrundimg.classList.add('hidde')
-    allCustomersContainer.classList.add('hidde')
-    loggainContainer.classList.add('hidde')
-    if(newCustomer.classList.contains('hidde')){
-        newCustomer.classList.remove('hidde')
+    backgrundimg.classList.add('hide')
+    allCustomersContainer.classList.add('hide')
+    loggainContainer.classList.add('hide')
+    if(newCustomer.classList.contains('hide')){
+        newCustomer.classList.remove('hide')
     }else{
-        newCustomer.classList.add('hidde')
-        backgrundimg.classList.remove('hidde')
+        newCustomer.classList.add('hide')
+        backgrundimg.classList.remove('hide')
     }
 }
 const showcreateAdmin =()=>{
-    if(newAdminlogin.classList.contains('hidde')){
-        newAdminlogin.classList.remove('hidde')
+    backgrundimg.classList.add('hide')
+    if(newAdminlogin.classList.contains('hide')){
+        newAdminlogin.classList.remove('hide')
+    }else{
+        newAdminlogin.classList.add('hide')
     }
 }
 const loggainForm =() =>{
-    backgrundimg.classList.add('hidde')
-    newCustomer.classList.add('hidde')
-    allCustomersContainer.classList.add('hidde')
-    if(loggainContainer.classList.contains('hidde')){
-        loggainContainer.classList.remove('hidde')
+    backgrundimg.classList.add('hide')
+    newCustomer.classList.add('hide')
+    allCustomersContainer.classList.add('hide')
+    if(loggainContainer.classList.contains('hide')){
+        loggainContainer.classList.remove('hide')
     }else{
-        loggainContainer.classList.add('hidde')
-        backgrundimg.classList.remove('hidde')
+        loggainContainer.classList.add('hide')
+        backgrundimg.classList.remove('hide')
     }
 }
 

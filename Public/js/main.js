@@ -5,13 +5,3 @@ const bankcustomerApi = async () => {
     entries=data
 }
 bankcustomerApi()
-
-const getProfileApi = async (id) => {
-    const res = await fetch(`/api/accounts/${id}`);
-    const data = await res.json();
-    customerAccount(data);
-    console.log(data)
-    logginlink(data)
-  }
-getProfileApi(customerId);
-logginlink()
